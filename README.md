@@ -5,7 +5,7 @@
 ### Step 1
 
 Pick and setup data source: 
-DOE generator: http://apps1.eere.energy.gov/buildings/energyplus/
+DOE generator: http://apps1.eere.energy.gov/buildings/energyplus/ - we'd like to try this first
 Pecan Street: https://dataport.pecanstreet.org
 Preferrably, Raspberry Pi
 
@@ -13,13 +13,13 @@ Determine how to generate and extract data from data source
 
 ### Step 2
 
-Pick which parts of the data to package into streaming information
-Communicate JSON structure to other teams reliant on our data
-Determine how we will authenticate (keys)
+Pick which parts of the data to package into streaming information - (temperature, humidty, dew point, coordinates)
+Communicate JSON structure to other teams reliant on our data - email Freddie
+Determine how we will authenticate (keys) 
 
 ### Step 3
 
-Pick application to use to stream the data, set up raspberry pi to act as server
+communicate server information
 
 ### Step 4
 
@@ -28,8 +28,9 @@ Format application data into JSON as specified in Step 2
 Set up API endpoints for application
 Stream data using application
 
-### Step 5
+### Step 5 (extra goals)
 
 Authentication
 Filtering
 Buffering, Networking concerns
+etc.
