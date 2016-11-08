@@ -10,7 +10,7 @@ Determine how we will authenticate (keys) <br />
 
 ### Step 3<br />
 
-communicate server information<br />
+Communicate server information<br />
 
 ### Step 4
 
