@@ -2,35 +2,30 @@
 
 ## Current agenda:
 
-### Step 1
-
-Pick and setup data source: 
-DOE generator: http://apps1.eere.energy.gov/buildings/energyplus/ - we'd like to try this first
-Pecan Street: https://dataport.pecanstreet.org
-Preferrably, Raspberry Pi
-
-Determine how to generate and extract data from data source
-
 ### Step 2
 
-Pick which parts of the data to package into streaming information - (temperature, humidty, dew point, coordinates)
-Communicate JSON structure to other teams reliant on our data - email Freddie
-Determine how we will authenticate (keys) 
+Pick which parts of the data to package into streaming information - (temperature, humidty, dew point, coordinates)<br />
+Communicate JSON structure to other teams reliant on our data - email Freddie<br />
+Determine how we will authenticate (keys) <br />
 
-### Step 3
+### Step 3<br />
 
-Communicate server information
+communicate server information<br />
 
 ### Step 4
 
-Deploy application to read data from data generator (Pi sensors, DOE, etc.)
-Format application data into JSON as specified in Step 2
-Set up API endpoints for application
-Stream data using application
+Set up API endpoints for application <br />
+Stream data using application <br />
 
-### Step 5 (extra goals)
+### Step 5 (extra goals) <br />
 
-Authentication
-Filtering
-Buffering, Networking concerns
-etc.
+Authentication <br />
+Filtering <br />
+Buffering, Networking concerns <br />
+etc. <br />
+
+### Current Status:
+Have bash script to automatically generate data using EnergyPlus (with static parameters <br />
+Have python script to parse output and convert output to JSON <br />
+Waiting on other teams to determine what we should actually output <br />
+Ready to start working on networking 
