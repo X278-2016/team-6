@@ -19,7 +19,7 @@ Determine how we will authenticate (keys)
 
 ### Step 3
 
-communicate server information
+Communicate server information
 
 ### Step 4
 
