@@ -25,7 +25,7 @@ class GetJsonStringFromHTML():
 
 	def get_session(self):
 		requests_session = requests.session()
-		requests_session.mount('file:\\\\', LocalFileAdapter())
+		requests_session.mount('file://', LocalFileAdapter())
 		r = requests_session.get(self.file_name)
 		return BeautifulSoup(r.content, 'html.parser')
 
@@ -93,9 +93,9 @@ class GetJsonStringFromHTML():
 
 def main():
 	#input file is CoolingTower.idf, weather file varies
-	a = GetJsonStringFromHTML("\"first_name\"", 'file:\\\\C:\\Users\\jsamost\\EnergyPlusV8-6-0\\ExampleFiles\\CoolingTowerTable.html').get_string()[:-1] + ","
-	b = GetJsonStringFromHTML("\"second_name\"", 'file:\\\\C:\\Users\\jsamost\\EnergyPlusV8-6-0\\ExampleFiles\\CoolingTowerTable.html').get_string()[1:-1] + ","
-	c = GetJsonStringFromHTML("\"third_name\"", 'file:\\\\C:\\Users\\jsamost\\EnergyPlusV8-6-0\\ExampleFiles\\CoolingTowerTable.html').get_string()[1:]
+	a = GetJsonStringFromHTML("\"Tampa_Data\"", 'file://' + sys.argv[1]).get_string()[:-1] + ","
+	b = GetJsonStringFromHTML("\"San_Fran_Data\"", 'file://' + sys.argv[2]).get_string()[1:-1] + ","
+	c = GetJsonStringFromHTML("\"Chicago_Data\"", 'file://' + sys.argv[3]).get_string()[1:]
 
 	with open("team-7.json", "w+") as f:
 		f.write(a + b + c)
