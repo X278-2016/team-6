@@ -2,6 +2,7 @@ import string, requests, os, json, sys
 from bs4 import BeautifulSoup 
 from requests_testadapter import Resp
 
+
 class LocalFileAdapter(requests.adapters.HTTPAdapter):
     def build_response_from_file(self, request):
         file_path = request.url[7:]
@@ -69,16 +70,18 @@ class GetJsonStringFromHTML():
 
 
 	def list_to_dict(self):
+		_data_points = ['Cooling Coils', 'Heating Coils', 'Fans', 'Pumps']
 		out = []
 		for val in self.do_parse():
 			tmp = {}
-			for i in val[1]:
-				sub = [{x[0] : x[1]} for x in i[1]]
-				d = {}
-				for j in sub:
-					d.update(j)
-				tmp.update({i[0] : d})
-			out.append(({val[0] : tmp}))
+			if val[0] in _data_points:
+				for i in val[1]:
+					sub = [{x[0] : x[1]} for x in i[1]]
+					d = {}
+					for j in sub:
+						d.update(j)
+					tmp.update({i[0] : d})
+				out.append(({val[0] : tmp}))
 		return out
 
 
@@ -102,13 +105,6 @@ def main():
 
 
 main()
-
-'''
-to do::
-1. figure out which three .html files to use (how to get each data set)
-2. figure out which data points within the html we want
-3. pass command line arguments for file location, name of each top level json object
-'''
 
 '''
 http://stackoverflow.com/questions/2719017/how-to-set-timeout-on-pythons-socket-recv-method
