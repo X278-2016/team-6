@@ -99,10 +99,13 @@ def main():
 	a = GetJsonStringFromHTML("\"Tampa_Data\"", 'file://' + sys.argv[1]).get_string()[:-1] + ","
 	b = GetJsonStringFromHTML("\"San_Fran_Data\"", 'file://' + sys.argv[2]).get_string()[1:-1] + ","
 	c = GetJsonStringFromHTML("\"Chicago_Data\"", 'file://' + sys.argv[3]).get_string()[1:]
-
+	
 	with open("team-7.json", "w+") as f:
 		f.write(a + b + c)
-
+	
+def send_data(data):
+	with open('team-7.json', 'rb') as f:	
+		r = requests.post('ec2-107-23-231-72.compute-1.amazonaws.com:8080/api/create/newpadset/', json = f, auth=('admin','admin'))
 
 main()
 
@@ -110,4 +113,5 @@ main()
 http://stackoverflow.com/questions/2719017/how-to-set-timeout-on-pythons-socket-recv-method
 https://docs.python.org/2/library/socket.html
 https://wiki.python.org/moin/TcpCommunication
+http://stackoverflow.com/questions/9733638/post-json-using-python-requests
 '''

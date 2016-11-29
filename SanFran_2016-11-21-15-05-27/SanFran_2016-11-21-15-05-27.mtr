@@ -1,0 +1,45 @@
+Program Version,EnergyPlus, Version 8.6.0-198c6a3cff, YMD=2016.11.21 15:05
+1,5,Environment Title[],Latitude[deg],Longitude[deg],Time Zone[],Elevation[m]
+2,6,Day of Simulation[],Month[],Day of Month[],DST Indicator[1=yes 0=no],Hour[],StartMinute[],EndMinute[],DayType
+3,3,Cumulative Day of Simulation[],Month[],Day of Month[],DST Indicator[1=yes 0=no],DayType  ! When Daily Meters Requested
+4,2,Cumulative Days of Simulation[],Month[]  ! When Monthly Meters Requested
+5,1,Cumulative Days of Simulation[] ! When Run Period Meters Requested
+14,9,Electricity:Facility [J] !Monthly  [Value,Min,Day,Hour,Minute,Max,Day,Hour,Minute]
+24,9,Electricity:Building [J] !Monthly  [Value,Min,Day,Hour,Minute,Max,Day,Hour,Minute]
+44,9,InteriorLights:Electricity [J] !Monthly  [Value,Min,Day,Hour,Minute,Max,Day,Hour,Minute]
+402,9,Electricity:HVAC [J] !Monthly  [Value,Min,Day,Hour,Minute,Max,Day,Hour,Minute]
+527,9,Electricity:Plant [J] !Monthly  [Value,Min,Day,Hour,Minute,Max,Day,Hour,Minute]
+15,11,Electricity:Facility [J] !RunPeriod [Value,Min,Month,Day,Hour,Minute,Max,Month,Day,Hour,Minute]
+25,11,Electricity:Building [J] !RunPeriod [Value,Min,Month,Day,Hour,Minute,Max,Month,Day,Hour,Minute]
+45,11,InteriorLights:Electricity [J] !RunPeriod [Value,Min,Month,Day,Hour,Minute,Max,Month,Day,Hour,Minute]
+403,11,Electricity:HVAC [J] !RunPeriod [Value,Min,Month,Day,Hour,Minute,Max,Month,Day,Hour,Minute]
+528,11,Electricity:Plant [J] !RunPeriod [Value,Min,Month,Day,Hour,Minute,Max,Month,Day,Hour,Minute]
+End of Data Dictionary
+1,CHICAGO OHARE INTL AP ANN HTG 99% CONDNS DB,  37.62,-122.40,  -8.00,   2.00
+4,1, 1
+14,471470304.5966713,809689.872362528,21,19,10,6622890.6801403169,21, 9,10
+24,358900820.135999,70290.006,21, 1,10,5798926.32,21, 9,10
+44,95313248.13599995,70290.006,21, 1,10,1405800.12,21, 8,10
+402,96274285.71428576,668571.4285714285,21, 1,10,668571.4285714285,21, 1,10
+527,16295198.746385422,2077.3004093945474,21,18,10,495702.2534052726,21, 8,10
+5,1
+15,471470304.5966713,809689.872362528, 1,21,19,10,6622890.6801403169, 1,21, 9,10
+25,358900820.135999,70290.006, 1,21, 1,10,5798926.32, 1,21, 9,10
+45,95313248.13599995,70290.006, 1,21, 1,10,1405800.12, 1,21, 8,10
+403,96274285.71428576,668571.4285714285, 1,21, 1,10,668571.4285714285, 1,21, 1,10
+528,16295198.746385422,2077.3004093945474, 1,21,18,10,495702.2534052726, 1,21, 8,10
+1,CHICAGO OHARE INTL AP ANN CLG 1% CONDNS DB=>MWB,  37.62,-122.40,  -8.00,   2.00
+4,1, 7
+14,692314937.250098,70290.006,21, 1,10,11746564.447404143,21,16,60
+24,358900820.135999,70290.006,21, 1,10,5798926.32,21, 9,10
+44,95313248.13599995,70290.006,21, 1,10,1405800.12,21, 8,10
+402,40114285.7142857,0.0,21, 1,10,668571.4285714285,21, 8,10
+527,293299831.3998108,0.0,21, 1,10,5593087.227720756,21, 8,10
+5,1
+15,692314937.250098,70290.006, 7,21, 1,10,11746564.447404143, 7,21,16,60
+25,358900820.135999,70290.006, 7,21, 1,10,5798926.32, 7,21, 9,10
+45,95313248.13599995,70290.006, 7,21, 1,10,1405800.12, 7,21, 8,10
+403,40114285.7142857,0.0, 7,21, 1,10,668571.4285714285, 7,21, 8,10
+528,293299831.3998108,0.0, 7,21, 1,10,5593087.227720756, 7,21, 8,10
+End of Data
+ Number of Records Written=          20
