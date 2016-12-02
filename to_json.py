@@ -1,4 +1,5 @@
 import string, requests, os, json, sys
+from requests import Request, Session
 from bs4 import BeautifulSoup 
 from requests_testadapter import Resp
 
@@ -100,12 +101,48 @@ def main():
 	b = GetJsonStringFromHTML("\"San_Fran_Data\"", 'file://' + sys.argv[2]).get_string()[1:-1] + ","
 	c = GetJsonStringFromHTML("\"Chicago_Data\"", 'file://' + sys.argv[3]).get_string()[1:]
 	
-	with open("team-7.json", "w+") as f:
-		f.write(a + b + c)
+	print a
+	sys.exit()
+	send_data(a+b+c)
 	
-def send_data(data):
-	with open('team-7.json', 'rb') as f:	
-		r = requests.post('ec2-107-23-231-72.compute-1.amazonaws.com:8080/api/create/newpadset/', json = f, auth=('admin','admin'))
+
+def send_data(json_data):
+	s = Session()
+	s.get('http://29242ae7.ngrok.io')
+
+	csrf_token = s.cookies['CSRF-TOKEN']
+	jsession = s.cookies['JSESSIONID']
+		
+	milk_and_cooks = s.cookies	
+
+	r = s.get('http://29242ae7.ngrok.io/api/padsets')
+	
+	headers = {'Host': '29242ae7.ngrok.io',
+	'Accept': 'application/json, text/plain, */*',
+	'Accept-Language': 'en-us',
+	'Accept-Encoding': 'gzip, deflate',
+	'Content-Type': 'application/x-www-form-urlencoded',
+	'Origin': 'http://29242ae7.ngrok.io',
+	'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Safari/602.1.50',
+	'Referer': 'http://29242ae7.ngrok.io/',
+	'X-CSRF-TOKEN': csrf_token
+	}
+
+	print 'session cookies first post', s.cookies, '\n'
+	s.headers = headers
+	print 'session headers first post', s.headers, '\n'
+	r =  s.post('http://29242ae7.ngrok.io/api/authentication?',  data='j_username=admin&j_password=admin&remember-me=true&submit=Login',  allow_redirects=False)
+	print 'SECOND POST\n\n'
+	print r.text
+	print 'session cookies second post', s.cookies
+	print 'session headers second post', s.headers
+	s.headers['Content-Type']= 'application/json'
+	
+
+	r = s.post('http://29242ae7.ngrok.io/api/create/newpadset', data = json_data)
+	#r = s.post('http://29242ae7.ngrok.io/api/padsets', data = json_data)
+	print r.text
+	print s.cookies
 
 main()
 
