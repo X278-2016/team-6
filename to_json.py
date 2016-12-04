@@ -98,19 +98,20 @@ class GetJsonStringFromHTML():
 def main():
 	#input file is CoolingTower.idf, weather file varies
 	a = []
-	a.append(GetJsonStringFromHTML("\"Tampa_Data\"", 'file://' + sys.argv[1]).get_string())
-	a.append(GetJsonStringFromHTML("\"San_Fran_Data\"", 'file://' + sys.argv[2]).get_string())
-	a.append(GetJsonStringFromHTML("\"Chicago_Data\"", 'file://' + sys.argv[3]).get_string())
-	
+	a.append(GetJsonStringFromHTML("\"first_name\"", 'file://' + sys.argv[1]).get_string())
+	a.append(GetJsonStringFromHTML("\"first_name\"", 'file://' + sys.argv[2]).get_string())
+	a.append(GetJsonStringFromHTML("\"first_name\"", 'file://' + sys.argv[3]).get_string())
+
+	s = obtain_session()
 	for i in a:
-		send_data_auth(a)
+		print s.post('http://abc029e7.ngrok.io/api/create/newpadset/', data = i)
 
-
-
-def send_data_auth(json_data):
+def obtain_session():
 	s = Session()
-	s.get('http://abc029e7.ngrok.io')
-
+	initial_request = s.get('http://abc029e7.ngrok.io')
+	if str(initial_request).find('200') == -1:
+		sys.exit("Error connecting to server")
+	
 	csrf_token = s.cookies['CSRF-TOKEN']
 	
 	headers = {'Host': 'abc029e7.ngrok.io',
@@ -125,12 +126,9 @@ def send_data_auth(json_data):
 	}
 
 	r =  s.post('http://abc029e7.ngrok.io/api/authentication?',  data='j_username=admin&j_password=admin&remember-me=true&submit=Login',  allow_redirects=False)
+	s.headers['Content-Type']= 'application/json'	
 	
-	s.headers['Content-Type']= 'application/json'
-	
-	r = s.post('http://abc029e7.ngrok.io/api/create/newpadset/', data = json_data)
-	
-	print r.text
+	return s	
 
 main()
 
