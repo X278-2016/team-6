@@ -134,9 +134,3 @@ def send_data_auth(json_data):
 
 main()
 
-'''
-http://stackoverflow.com/questions/2719017/how-to-set-timeout-on-pythons-socket-recv-method
-https://docs.python.org/2/library/socket.html
-https://wiki.python.org/moin/TcpCommunication
-http://stackoverflow.com/questions/9733638/post-json-using-python-requests
-'''
