@@ -3,7 +3,6 @@ from requests import Request, Session
 from bs4 import BeautifulSoup 
 from requests_testadapter import Resp
 
-
 class LocalFileAdapter(requests.adapters.HTTPAdapter):
     def build_response_from_file(self, request):
         file_path = request.url[7:]
@@ -31,7 +30,6 @@ class GetJsonStringFromHTML():
 		r = requests_session.get(self.file_name)
 		return BeautifulSoup(r.content, 'html.parser')
 
-
 	def do_parse(self):
 		soup = self.get_session()
 		end = []
@@ -55,7 +53,6 @@ class GetJsonStringFromHTML():
 			if txt[j]=='' and txt[j+1]=='':
 				y_values = j
 				break
-
 		header = []
 		for j in range(split):
 			top = [str(txt[j])]
@@ -68,7 +65,6 @@ class GetJsonStringFromHTML():
 			top.append(sub)
 			header.append(top)
 		return header
-
 
 	def list_to_dict(self):
 		_data_points = ['Cooling Coils', 'Heating Coils', 'Fans', 'Pumps', 'General']
@@ -85,15 +81,12 @@ class GetJsonStringFromHTML():
 				out.append(({val[0] : tmp}))
 		return out
 
-
 	def get_string(self):
 		value =  "{" + self.top_level_json + ": {"
 		for i in self.list_to_dict():
 			value += str(json.dumps(i))[1:-1] + ","
 		value = value[:-1] + "}}"
 		return value
-
-
 
 def main():
 	#input file is CoolingTower.idf, weather file varies
