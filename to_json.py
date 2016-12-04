@@ -71,7 +71,7 @@ class GetJsonStringFromHTML():
 
 
 	def list_to_dict(self):
-		_data_points = ['Cooling Coils', 'Heating Coils', 'Fans', 'Pumps']
+		_data_points = ['Cooling Coils', 'Heating Coils', 'Fans', 'Pumps', 'General']
 		out = []
 		for val in self.do_parse():
 			tmp = {}
@@ -97,27 +97,23 @@ class GetJsonStringFromHTML():
 
 def main():
 	#input file is CoolingTower.idf, weather file varies
-	a = GetJsonStringFromHTML("\"Tampa_Data\"", 'file://' + sys.argv[1]).get_string()[:-1] + ","
-	b = GetJsonStringFromHTML("\"San_Fran_Data\"", 'file://' + sys.argv[2]).get_string()[1:-1] + ","
-	c = GetJsonStringFromHTML("\"Chicago_Data\"", 'file://' + sys.argv[3]).get_string()[1:]
+	a = []
+	a.append(GetJsonStringFromHTML("\"Tampa_Data\"", 'file://' + sys.argv[1]).get_string())
+	a.append(GetJsonStringFromHTML("\"San_Fran_Data\"", 'file://' + sys.argv[2]).get_string())
+	a.append(GetJsonStringFromHTML("\"Chicago_Data\"", 'file://' + sys.argv[3]).get_string())
 	
-	print a
-	sys.exit()
-	send_data(a+b+c)
-	
+	for i in a:
+		send_data_auth(a)
 
-def send_data(json_data):
+
+
+def send_data_auth(json_data):
 	s = Session()
-	s.get('http://29242ae7.ngrok.io')
+	s.get('http://abc029e7.ngrok.io')
 
 	csrf_token = s.cookies['CSRF-TOKEN']
-	jsession = s.cookies['JSESSIONID']
-		
-	milk_and_cooks = s.cookies	
-
-	r = s.get('http://29242ae7.ngrok.io/api/padsets')
 	
-	headers = {'Host': '29242ae7.ngrok.io',
+	headers = {'Host': 'abc029e7.ngrok.io',
 	'Accept': 'application/json, text/plain, */*',
 	'Accept-Language': 'en-us',
 	'Accept-Encoding': 'gzip, deflate',
@@ -128,21 +124,13 @@ def send_data(json_data):
 	'X-CSRF-TOKEN': csrf_token
 	}
 
-	print 'session cookies first post', s.cookies, '\n'
-	s.headers = headers
-	print 'session headers first post', s.headers, '\n'
-	r =  s.post('http://29242ae7.ngrok.io/api/authentication?',  data='j_username=admin&j_password=admin&remember-me=true&submit=Login',  allow_redirects=False)
-	print 'SECOND POST\n\n'
-	print r.text
-	print 'session cookies second post', s.cookies
-	print 'session headers second post', s.headers
+	r =  s.post('http://abc029e7.ngrok.io/api/authentication?',  data='j_username=admin&j_password=admin&remember-me=true&submit=Login',  allow_redirects=False)
+	
 	s.headers['Content-Type']= 'application/json'
 	
-
-	r = s.post('http://29242ae7.ngrok.io/api/create/newpadset', data = json_data)
-	#r = s.post('http://29242ae7.ngrok.io/api/padsets', data = json_data)
+	r = s.post('http://abc029e7.ngrok.io/api/create/newpadset/', data = json_data)
+	
 	print r.text
-	print s.cookies
 
 main()
 
